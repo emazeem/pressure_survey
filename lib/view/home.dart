@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:ssgc/view/onBoarding.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -18,46 +19,54 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Pressure Survery'),
+        title: const Text('Pressure Survery'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 50.0),
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.network(
-                'https://dnd3y8e5nonx2.cloudfront.net/teams/avatars/112122/1477556587/display.png'),
             Container(
-              height: 50,
-              width: 200,
-              color: Color.fromARGB(255, 205, 207, 208),
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: DropdownButton(
-                  hint: Text('Select an item'),
-                  value: _selectedItem,
-                  onChanged: (newValue) {
-                    setState(() {
-                      _selectedItem = newValue;
-                    });
-                  },
-                  items: _items.map((item) {
-                    return DropdownMenuItem(
-                      value: item,
-                      child: Text(item),
-                    );
-                  }).toList(),
+              height: MediaQuery.of(context).size.height * 0.07,
+              width: MediaQuery.of(context).size.width * 0.5,
+              color: const Color.fromARGB(255, 177, 216, 236),
+              child: DropdownButton(
+                hint: const Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 30),
+                    child: Text(
+                      'Select an item',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
                 ),
+                value: _selectedItem,
+                icon: const Icon(Icons.arrow_drop_down),
+                onChanged: (newValue) {
+                  setState(() {
+                    _selectedItem = newValue;
+                  });
+                },
+                items: _items.map((item) {
+                  return DropdownMenuItem(
+                    value: item,
+                    child: Text(item),
+                  );
+                }).toList(),
               ),
             ),
             SizedBox(
               width: 200,
               child: ElevatedButton(
                 onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const OnBoarding(),
+                      ));
                   // Add your onPressed logic here.
                 },
-                child: Text('START'),
+                child: const Text('START'),
               ),
             )
           ],
