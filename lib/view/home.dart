@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ));
                   // Add your onPressed logic here.
                 },
-                child: const Text('START'),
+                child: const Text('STAR'),
               ),
             )
           ],
